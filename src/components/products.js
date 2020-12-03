@@ -1,10 +1,16 @@
 import React from 'react';
-import {selectProducts} from '../store/categories';
+import {selectProducts} from '../store/products.js';
 import { connect } from 'react-redux';
 
 function Products(props){
-  console.log(props.category.active)
-  let stuff = props.category.category.map((idk, index) => <a onClick={()=> props.selectCategory(idk)} key={index}>{idk.displayName}</a>)
+console.log(props);
+  let stuff = props.products.products.map((idk, index) =>{
+   if(props.active.name === idk.category){
+     return <li key={index}>{idk.name}</li>
+    
+   }
+  })
+    
   return(
     <>
 
@@ -16,7 +22,8 @@ function Products(props){
 
 }
    const mapStateToProps = (state) => ( {
-    category: state.products
+    products: state.products,
+    active: state.category.active
    })
 const mapDispatchToProps={selectProducts};
 export default connect(mapStateToProps,mapDispatchToProps)(Products);

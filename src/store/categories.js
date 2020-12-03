@@ -1,7 +1,7 @@
 const initialState = {
 active: '',
   category: [
-    {displayName: 'Staffordshire terrier', name:'staffordshire terrier', description: 'a dog'}, {displayName: 'Border Collie', name: 'border collie', description: 'a good boy'}, {displayName: 'Border Collie', name: 'border collie', description: 'a good boy'}
+    {displayName: 'Staffordshire terrier', name:'staffordshire terrier', description: 'a dog'}, {displayName: 'Border Collie', name: 'border collie', description: 'a good boy'}, {displayName: 'Pomeranian', name: 'pomeranian', description: 'fluffy boi'}
   ]
 }
 

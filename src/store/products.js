@@ -1,5 +1,5 @@
 const initialState = {
-  active: '',
+
     products: [
       { category: 'staffordshire terrier',name: 'Buster', description: 'lazy but good boi. sleep lot',price:10, inventoryCount: 7}, { category: 'border collie',name: 'Steve', description: 'likes to run',price:10, inventoryCount: 7}
     ]
