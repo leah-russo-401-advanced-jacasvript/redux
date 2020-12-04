@@ -1,3 +1,5 @@
+
+
 const initialState = {
   cart: [],
    total: 0
@@ -30,11 +32,26 @@ const initialState = {
       case 'SELECT_CART_ITEMS':
         return state;
       case 'ADD_TO_CART':
-        let newArr = {count: state.total +1, cart: [...state.cart, payload]};
+        let cart = state.cart;
+        if(cart.includes(payload)){
+
+          for(let i = 0; i< cart.length; i++) {
+            if(cart[i]==payload && cart[i].inventoryCount > 0){
+              cart[i].count++;
+              return {total: state.total + 1, cart: [...cart]}
+            } else { return {...state} }
+          } 
+        } else if(!cart.includes(payload)) {
+          payload.count = 1;
+          return {total: state.total + 1, cart: [...state.cart, payload]}
+        }
+        
+        let newArr = {...state};
         return newArr;
       case 'REMOVE_FROM_CART':
         let removal = state.cart.filter(value => value.name !== payload.name)
-          return removal;
+       
+          return { total: state.total - payload.count, cart: [...removal]};
       default: 
         return state;
     }

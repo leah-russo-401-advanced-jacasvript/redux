@@ -11,11 +11,46 @@ const initialState = {
       payload: stuff
     }
   }
-  
+
+  export const updateInventory = (stuff) => {
+    return {
+      type: 'UPDATE',
+      payload: stuff
+    }
+  }
+  export const reduceCount = (stuff) => {
+    return {
+      type: 'REMOVE',
+      payload: stuff
+    }
+  }
+
   const productsReducer = (state = initialState, action) => {
-    let {payload,type} = action
-   
-        return state;
+    let { type, payload } = action;
+    switch(type) {
+      case 'UPDATE':
+        for(let i = 0; i < state.products.length; i++) {
+          if(state.products[i] == payload) {
+            state.products[i].inventoryCount += payload.count;
+            state.products[i].count = 0;
+            console.log(state.products[i]);
+            return {products: [...state.products]}
+          }
+        }
+
+        case 'REMOVE':
+          for(let i = 0; i < state.products.length; i++) {
+            if(state.products[i] == payload) {
+              state.products[i].inventoryCount--;
+              console.log(state.products[i])
+              return {products: [...state.products]}
+            }
+          }
+
+        return {...state}
+        default:
+          return state;
+    }
     
   }
   

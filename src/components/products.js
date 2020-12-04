@@ -1,13 +1,15 @@
 import React from 'react';
-import {selectProducts} from '../store/products.js';
+import {selectProducts, reduceCount } from '../store/products.js';
 import { connect } from 'react-redux';
 import { addToCart } from '../store/cart.js';
 
 function Products(props){
-console.log(props);
   let stuff = props.products.products.map((idk, index) =>{
    if(props.active.name === idk.category){
-     return <> <li key={index}>{idk.name}</li> <button onClick={()=> props.addToCart(idk)}>Add To Cart</button> </>
+     return <> <li key={index}>{idk.name}</li> <button onClick={()=>{ 
+       props.addToCart(idk)
+       props.reduceCount(idk)
+      }}>Add To Cart</button> </>
     
    }
   })
@@ -28,7 +30,8 @@ console.log(props);
    })
 const mapDispatchToProps = ({ 
   selectProducts, 
-  addToCart
+  addToCart,
+  reduceCount
 
 });
 export default connect(mapStateToProps,mapDispatchToProps)(Products);
